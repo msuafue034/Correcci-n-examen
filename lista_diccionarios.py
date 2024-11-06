@@ -1,6 +1,10 @@
-# Repetir el enunciado del examen 
+# Repetir el enunciado del examen pero con las cancioner organizadas en lista de diccionarios.
+    # T-except
+    # Comprobar el nº de valores ficheros (comprobar si tiene tres elementos por diccionario)
+    # Crear función buscar_cancion
+    # Crear en un fichero con formato JSON
 
-# 1. Cargar lista:
+# Cargar lista:
 def cargar_lista(nombre_archivo):
     lista_musica = []
     with open (nombre_archivo, "r") as fichero:
@@ -15,11 +19,10 @@ def cargar_lista(nombre_archivo):
             lista_musica.append(diccionario)
     return lista_musica
 
-# 2 Añadir canción:
-def añadir_cancion(lista_canciones, cancion_nueva, artista_nuevo, genero_nuevo):
-    encontrada == True
+# Añadir canción:
+def añadir_cancion(lista, cancion_nueva, artista_nuevo, genero_nuevo):
     
-    #Buscar
+    encontrada = buscar_cancion(lista, cancion_nueva)
     
     if encontrada == True:
         print(f"La canción {cancion_nueva} ya está añadida a la lista de canciones")
@@ -29,27 +32,32 @@ def añadir_cancion(lista_canciones, cancion_nueva, artista_nuevo, genero_nuevo)
             "artista":artista_nuevo,
             "genero":genero_nuevo,
         }
-        lista_canciones.append(diccionario)
+        lista.append(diccionario)
         print(f"La canción {cancion_nueva} se ha añadido con éxito.")
-    return lista_canciones
+    return lista
     
-
-# 3 Eliminar canción:
-
-
-# 4 Contar Canciones:
- 
-
-# 5. Buscar por artista:
-
-
-# 6. Ordenar por orden alfabético:
-
-
-# 7. Crear lista aleatoria:
+# Eliminar canción:
+def eliminar_cancion(lista, nombre_cancion):
+    encontrada = buscar_cancion(lista, nombre_cancion)
+    
+    if encontrada == False:
+        print(f"La canción {nombre_cancion} no se encuentra en la lista.")
+    else:
+        if cancion["nombre"] == nombre_cancion:
+            lista.remove(cancion)
+        print(f"La canción {nombre_cancion} se ha eliimnado con éxito.")
+        
+# Guardar lista:
 
 
-# 8. Guardar lista:
+# Buscar canción:
+def buscar_cancion(lista, nombre_cancion):
+    for cancion in lista:
+        if cancion["nombre"] == nombre_cancion:
+            return True
+    return False
+
+    
 
 
 
@@ -69,17 +77,6 @@ print("\nLista actualizada: ", lista_canciones)
 
 # 3. Eliminar canción:
 
-
-# 4. Contar canciones:
-
-
-# 5. Buscar por artista:
-
-
-# 6. Ordenar por orden alfabético:
-
-
-# 7. Crear lista aleatoria:
 
 
 # 8. Guardar lista:
