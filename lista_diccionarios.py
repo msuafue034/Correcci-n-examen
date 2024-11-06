@@ -1,8 +1,8 @@
 # Repetir el enunciado del examen pero con las cancioner organizadas en lista de diccionarios.
-    # T-except
-    # Comprobar el nº de valores ficheros (comprobar si tiene tres elementos por diccionario)
-    # Crear función buscar_cancion
-    # Crear en un fichero con formato JSON
+    #! Try-except
+    #? Comprobar el nº de valores ficheros (comprobar si tiene tres elementos por diccionario)
+    #* Crear función buscar_cancion
+    #! Crear en un fichero con formato JSON
 
 # Cargar lista:
 def cargar_lista(nombre_archivo):
@@ -61,11 +61,9 @@ def buscar_cancion(lista, nombre_cancion):
             return True
     return False
 
-    
 
 
-
-################ LLAMADAS A LAS FUNCIONES ################
+###################### LLAMADAS A LAS FUNCIONES ######################
 
 # 1. Cargar lista:
 nombre_archivo = "biblioteca.txt"
@@ -88,3 +86,13 @@ eliminar_cancion(lista_canciones, cancion_eliminar)
 nombre_archivo = "biblioteca.txt"
 lista_canciones = cargar_lista(nombre_archivo)
 guardar_lista(lista_canciones, nombre_archivo)
+
+
+
+
+#?##################### QUÉ ME FALTA POR HACER ######################
+
+# Buscar cómo cambiarlo por --> for i, cancion in enumerate(biblioteca.txt): para ahorrarme el for de eliminar
+# Añadir los try-except
+# Comprobar si pasa 3 elementos (en teoría ya pasa 3 porque guarda en 3 variables, pero de otra forma)
+# Pelearme para que devuelva cosas en JSON
