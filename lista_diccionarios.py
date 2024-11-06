@@ -48,7 +48,11 @@ def eliminar_cancion(lista, nombre_cancion):
         print(f"La canción {nombre_cancion} se ha eliimnado con éxito.")
         
 # Guardar lista:
-
+def guardar_lista(lista, nombre_archivo):
+    with open (nombre_archivo, "w") as fichero:
+        for cancion in lista:
+            fichero.write(f"{cancion['nombre']} - {cancion['artista']} - {cancion['genero']}\n")
+    print(f"Lista guardada en {nombre_archivo}")
 
 # Buscar canción:
 def buscar_cancion(lista, nombre_cancion):
@@ -76,8 +80,11 @@ lista_canciones = añadir_cancion(lista_canciones, cancion_nueva, artista_nuevo,
 print("\nLista actualizada: ", lista_canciones)
 
 # 3. Eliminar canción:
-
-
+cancion_eliminar = input("Introduce el nombre de la canción para eliminarla: ")
+lista_canciones = cargar_lista(nombre_archivo)
+eliminar_cancion(lista_canciones, cancion_eliminar)
 
 # 8. Guardar lista:
-
+nombre_archivo = "biblioteca.txt"
+lista_canciones = cargar_lista(nombre_archivo)
+guardar_lista(lista_canciones, nombre_archivo)
