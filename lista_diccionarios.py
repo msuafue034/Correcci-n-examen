@@ -16,7 +16,23 @@ def cargar_lista(nombre_archivo):
     return lista_musica
 
 # 2 Añadir canción:
-
+def añadir_cancion(lista_canciones, cancion_nueva, artista_nuevo, genero_nuevo):
+    encontrada == True
+    
+    #Buscar
+    
+    if encontrada == True:
+        print(f"La canción {cancion_nueva} ya está añadida a la lista de canciones")
+    else:
+        diccionario = {
+            "nombre":cancion_nueva,
+            "artista":artista_nuevo,
+            "genero":genero_nuevo,
+        }
+        lista_canciones.append(diccionario)
+        print(f"La canción {cancion_nueva} se ha añadido con éxito.")
+    return lista_canciones
+    
 
 # 3 Eliminar canción:
 
@@ -42,10 +58,14 @@ def cargar_lista(nombre_archivo):
 # 1. Cargar lista:
 nombre_archivo = "biblioteca.txt"
 lista_canciones = cargar_lista(nombre_archivo)
-print("\nLista cargada:", lista_canciones)
+print("\nLista cargada: ", lista_canciones)
 
 # 2. Añadir canción:
-
+cancion_nueva = input("Introduce el nombre de la canción a añadir: ")
+artista_nuevo = input("Introduce el nombre del artista: ")
+genero_nuevo = input("Introduce el género de la canción: ")
+lista_canciones = añadir_cancion(lista_canciones, cancion_nueva, artista_nuevo, genero_nuevo)
+print("\nLista actualizada: ", lista_canciones)
 
 # 3. Eliminar canción:
 
