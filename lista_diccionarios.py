@@ -1,5 +1,5 @@
 # Repetir el enunciado del examen pero con las cancioner organizadas en lista de diccionarios.
-    #! Try-except
+    #* Try-except
     #* Comprobar el nº de valores ficheros (comprobar si tiene tres elementos por diccionario)
     #* Crear función buscar_cancion
     #* Crear en un fichero con formato JSON
@@ -9,19 +9,23 @@ import json
 # Cargar lista:
 def cargar_lista(nombre_archivo):
     lista_musica = []
-    with open(nombre_archivo, "r") as fichero:
-        for linea in fichero:
-            elementos = linea.strip().split(" - ")
-            if len(elementos) == 3:
-                cancion, artista, genero = elementos
-                print(f"Cancion: {cancion} - Artista: {artista} - Genero: {genero}")
-                diccionario = {
-                    "nombre": cancion,
-                    "artista": artista,
-                    "genero": genero,
-                }
-                lista_musica.append(diccionario)
-    return lista_musica
+    try:
+        with open(nombre_archivo, "r") as fichero:
+            for linea in fichero:
+                elementos = linea.strip().split(" - ")
+                if len(elementos) == 3:
+                    cancion, artista, genero = elementos
+                    print(f"Cancion: {cancion} - Artista: {artista} - Genero: {genero}")
+                    diccionario = {
+                        "nombre": cancion,
+                        "artista": artista,
+                        "genero": genero,
+                    }
+                    lista_musica.append(diccionario)
+        return lista_musica
+    except FileNotFoundError:
+        print("No se ha podido encontrar el fichero. Inténtelo de nuevo")
+        return[]
 
 # Añadir canción:
 def añadir_cancion(lista, cancion_nueva, artista_nuevo, genero_nuevo):
@@ -59,10 +63,16 @@ def guardar_lista(lista, nombre_archivo):
     
 # Guardar lista en JSON:
 def guardar_json(lista, archivo_json):
-    with open(archivo_json, "w") as fichero:
-        lista = json.dump(lista, fichero, indent=4)
-        return lista
-    print(f"Lista guardada correctamente en formato JSON \n- Ubicación: {archivo_json}")
+    try:
+        with open(archivo_json, "w") as fichero:
+            lista = json.dump(lista, fichero, indent=4, ensure_ascii=False) #Indent para formato, ensure_ascii para que guarde elementos especiales como tildes
+            return lista
+            # Se pueden cambiar estas dos últimas líneas por [return json.load(fichero)]
+            print(f"Lista guardada correctamente en formato JSON \n- Ubicación: {archivo_json}")
+    except FileNotFoundError:
+        print(f"El archivo {nombre_archivo} no ha podido encontrarse")
+        return []
+    
 
 # Buscar canción:
 def buscar_cancion(lista, nombre_cancion):
@@ -98,13 +108,3 @@ guardar_lista(lista_canciones, nombre_archivo)
 # Guardar la lista en JSON
 archivo_json = "biblioteca.json"
 guardar_json(lista_canciones, archivo_json)
-
-
-
-
-#?##################### QUÉ ME FALTA POR HACER ######################
-
-# Buscar cómo cambiarlo por --> for i, cancion in enumerate(biblioteca.txt): para ahorrarme el for de eliminar_cancion
-# Añadir los try-except
-# Comprobar si pasa 3 elementos (en teoría ya pasa 3 porque guarda en 3 variables, pero de otra forma)
-# Pelearme para que devuelva cosas en JSON
