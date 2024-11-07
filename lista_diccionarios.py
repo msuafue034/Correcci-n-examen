@@ -22,9 +22,9 @@ def cargar_lista(nombre_archivo):
 # Añadir canción:
 def añadir_cancion(lista, cancion_nueva, artista_nuevo, genero_nuevo):
     
-    encontrada = buscar_cancion(lista, cancion_nueva)
+    indice = buscar_cancion(lista, cancion_nueva)
     
-    if encontrada == True:
+    if indice >= 0:
         print(f"La canción {cancion_nueva} ya está añadida a la lista de canciones")
     else:
         diccionario = {
@@ -38,13 +38,13 @@ def añadir_cancion(lista, cancion_nueva, artista_nuevo, genero_nuevo):
     
 # Eliminar canción:
 def eliminar_cancion(lista, nombre_cancion):
-    encontrada = buscar_cancion(lista, nombre_cancion)
+    indice = buscar_cancion(lista, nombre_cancion)
     
-    if encontrada == False:
+    if indice < 0:
         print(f"La canción {nombre_cancion} no se encuentra en la lista.")
     else:
         if cancion["nombre"] == nombre_cancion:
-            lista.remove(cancion)
+            lista.remove(lista[indice])
         print(f"La canción {nombre_cancion} se ha eliimnado con éxito.")
         
 # Guardar lista:
@@ -56,10 +56,11 @@ def guardar_lista(lista, nombre_archivo):
 
 # Buscar canción:
 def buscar_cancion(lista, nombre_cancion):
-    for cancion in lista:
+    for i, cancion in enumerate(biblioteca.txt):
         if cancion["nombre"] == nombre_cancion:
-            return True
-    return False
+            return i
+    return -1
+    #Se devuelve -1 o cualquier número menor a 0 --> Si no tiene índice (>=0) no existe 
 
 
 
@@ -92,7 +93,7 @@ guardar_lista(lista_canciones, nombre_archivo)
 
 #?##################### QUÉ ME FALTA POR HACER ######################
 
-# Buscar cómo cambiarlo por --> for i, cancion in enumerate(biblioteca.txt): para ahorrarme el for de eliminar
+# Buscar cómo cambiarlo por --> for i, cancion in enumerate(biblioteca.txt): para ahorrarme el for de eliminar_cancion
 # Añadir los try-except
 # Comprobar si pasa 3 elementos (en teoría ya pasa 3 porque guarda en 3 variables, pero de otra forma)
 # Pelearme para que devuelva cosas en JSON
