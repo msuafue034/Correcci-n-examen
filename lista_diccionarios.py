@@ -4,19 +4,22 @@
     #* Crear función buscar_cancion
     #! Crear en un fichero con formato JSON
 
+import json
+
 # Cargar lista:
 def cargar_lista(nombre_archivo):
     lista_musica = []
-    with open (nombre_archivo, "r") as fichero:
+    with open(nombre_archivo, "r") as fichero:
         for linea in fichero:
-            cancion, artista, genero = linea.strip().split(" - ")
-            print(f"Cancion: {cancion} - Artista: {artista} - Genero: {genero}")
-            diccionario = {
-                "nombre":cancion,
-                "artista":artista,
-                "genero":genero,
-            }
-            lista_musica.append(diccionario)
+            elementos = linea.strip().split(" - ")
+            if len(elementos) == 3:
+                cancion, artista, genero = elementos
+                diccionario = {
+                    "nombre": cancion,
+                    "artista": artista,
+                    "genero": genero,
+                }
+                lista_musica.append(diccionario)
     return lista_musica
 
 # Añadir canción:
@@ -43,9 +46,8 @@ def eliminar_cancion(lista, nombre_cancion):
     if indice < 0:
         print(f"La canción {nombre_cancion} no se encuentra en la lista.")
     else:
-        if cancion["nombre"] == nombre_cancion:
-            lista.remove(lista[indice])
-        print(f"La canción {nombre_cancion} se ha eliimnado con éxito.")
+        del lista[indice]
+        print(f"La canción {nombre_cancion} se ha eliminado con éxito.")
         
 # Guardar lista:
 def guardar_lista(lista, nombre_archivo):
